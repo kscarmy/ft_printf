@@ -36,15 +36,15 @@ void	ft_printf_x_disp(t_point *ptf)
 	int u;
 
 	u = ptf->wdh;
-	if (ptf->d[0] == '-' && ptf->typ == 'd' && ptf->t != 0)
+	if (ptf->d[0] == '-' && ptf->typ == 'd' && ptf->ui != 0)
 		ft_putchar_printf('-', ptf);
 	m = ptf->pco;
 	a = 0;
-	if (ptf->t == 0 && ptf->pco < 0)
-	{
-		ft_putchar_printf('0', ptf);
-		a++;
-	}
+	// if (ptf->ui == 0 && ptf->pco < 0)
+	// {
+	// 	ft_putchar_printf('0', ptf);
+	// 	a++;
+	// }
 	while (ptf->ui == 0 && m - 1 > 0)
 	{
 		ft_putchar_printf('0', ptf);
@@ -54,7 +54,7 @@ void	ft_printf_x_disp(t_point *ptf)
 	// printf("%s\n", "test");
 	ft_printf_x_disp_suite(&m, &a, &u, ptf);
 	// printf("%s\n", "test");
-	ptf->siz = (ptf->t == 0) ? 1 : ptf->siz + a;
+	ptf->siz = (ptf->ui == 0) ? 1 : ptf->siz + a;
 }
 
 void	ft_printf_itoa_x(t_point *ptf)
@@ -122,7 +122,7 @@ void	ft_printf_x(t_point *ptf)
 	// ptf->ui = (ptf->ui < 0) ? (2004318071 - (ptf->ui * -1) -1) : ptf->ui;
 	// printf("%u\n", ptf->ui);
 	ft_printf_itoa_x(ptf);
-
+	// printf("\n1 ui %u,siz %d,wdh %d,pco %d\n", ptf->ui, ptf->siz, ptf->wdh, ptf->pco);
 	// printf("\na %c\n", ptf->d[0]);
 	// printf("\nsiz %d\n", ptf->siz);
 	ptf->siz = (ptf->ui == 0) ? 1 : ptf->siz;
@@ -133,7 +133,9 @@ void	ft_printf_x(t_point *ptf)
 	ft_printf_x_suite(ptf);
 	// printf("\nsiz %d\n", ptf->siz);
 	// printf("\nd %c\n", ptf->d[0]);
+	// printf("\n2 ui %u,siz %d,wdh %d,pco %d\n", ptf->ui, ptf->siz, ptf->wdh, ptf->pco);
 	ft_printf_x_disp(ptf);
+	// printf("\n3 ui %u,siz %d,wdh %d,pco %d\n", ptf->ui, ptf->siz, ptf->wdh, ptf->pco);
 	// printf("\nsiz %d\n", ptf->siz);
 	while (ptf->wdh > ptf->siz && ptf->fag == '-' && ptf->wdh > ptf->pco)
 		ft_printf_d_incre(' ', ptf);

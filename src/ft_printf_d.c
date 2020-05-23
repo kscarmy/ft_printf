@@ -40,7 +40,7 @@ void	ft_printf_d(t_point *ptf)
 	// ptf->b = (ptf->typ == 'X' && ) ? 16 : 10;
 	// ptf->maj = (ptf->typ == 'X') ? 'A' - 10 : 'a' - 10;
 	ptf->t = va_arg(ptf->ap, int);
-	ft_printf_itoa(ptf);
+	(ptf->t == -2147483648) ? ft_printf_itoa_ll(ptf) : ft_printf_itoa(ptf);
 	ptf->siz = (ptf->t == 0) ? 1 : ptf->siz;
 	if (ptf->pco > ((ptf->d[0] == '-') ? ptf->siz - 1 : ptf->siz))
 		ptf->g = ptf->pco - ((ptf->d[0] == '-') ? ptf->siz - 1 : ptf->siz);

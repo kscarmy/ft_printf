@@ -1,5 +1,25 @@
 #include "../includes/ft_printf.h"
 
+int		ft_false_type(t_point *ptf)
+{
+	ptf->i = ptf->i;
+	if ((ptf->fmt[ptf->i + ptf->u] != 's') && (ptf->fmt[ptf->i + ptf->u] != '%')
+	 && (ptf->fmt[ptf->i + ptf->u] != 'c') && (ptf->fmt[ptf->i + ptf->u] != 'd')
+	  && (ptf->fmt[ptf->i + ptf->u] != 'p') && (ptf->fmt[ptf->i + ptf->u] != 'u')
+		 && (ptf->fmt[ptf->i + ptf->u] != 'i') && (ptf->fmt[ptf->i + ptf->u] != 'x')
+		  && (ptf->fmt[ptf->i + ptf->u] != 'X')
+			&& (ptf->fmt[ptf->i + ptf->u] != '0')
+			&& (ptf->fmt[ptf->i + ptf->u] != '.')
+			&& (ptf->fmt[ptf->i + ptf->u] != '-')
+			&& (ptf->fmt[ptf->i + ptf->u] != '*')
+			&& (ft_isdigit(ptf->fmt[ptf->i + ptf->u] == 1)))
+			{
+				// printf("\ni+u '%c'\n", ptf->fmt[ptf->i + ptf->u]);
+				return (0);
+			}
+	return (1);
+}
+
 void	ft_ana_types(t_point *ptf) // envoie direct sur la fonction correspondant au type
 {
 	if (ptf->typ == 's')
@@ -52,7 +72,7 @@ int	ft_find_type(t_point *ptf) // trouve ici le type
 		// printf("error type not support\n");// A SUPPRIMER
 		ptf->u = ptf->u + 1;
 	}
-	return (1);
+	return (ft_false_type(ptf));
 }
 
 void	ft_ana_flags(t_point *ptf) // soccupe de flags, width et précision
@@ -63,14 +83,24 @@ void	ft_ana_flags(t_point *ptf) // soccupe de flags, width et précision
 	{
 		if (ptf->fmt[ptf->i + ptf->u] == '-' || ptf->fmt[ptf->i + ptf->u] == '0')
 			ft_know_flags(ptf); // définis le flags
+		if (ptf->fmt[ptf->i + ptf->u] == '-')
+			ft_know_flags(ptf); // définis le flags
 		if (ft_isdigit(ptf->fmt[ptf->i + ptf->u]) || ptf->fmt[ptf->i + ptf->u] == '*')
 			ft_know_width(ptf); // définis la largeur (width)
 		if (ptf->fmt[ptf->i + ptf->u] == '.')
 			ft_know_precision(ptf);
+		if (ft_false_type(ptf) == 0)
+			break;
 	}
 	// printf("ret :%d\n", ptf->ret);// A SUPPRIMER
 	// printf("i :%d\n", ptf->i);// A SUPPRIMER
 	// printf("ret :%u\n", ptf->u);// A SUPPRIMER
 	// printf("typ :%c\n", ptf->typ);// A SUPPRIMER
-	ft_ana_types(ptf);
+	if (ft_false_type(ptf) == 1)
+		ft_ana_types(ptf);
+	else
+	{
+		// ft_putchar_printf(ptf->fmt[ptf->i + ptf->u], ptf);
+		ptf->i = ptf->i + ptf->u;
+	}
 }

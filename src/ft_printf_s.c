@@ -8,6 +8,9 @@ void	ft_printf_s_disp(char *str, t_point *ptf)
 	// printf ("wdh :%d\n", ptf->wdh); // A SUPPRIMER
 	// printf ("siz :%d\n", ptf->siz); // A SUPPRIMER
 	// printf ("pco :%d\n", ptf->pco); // A SUPPRIMER
+	while (ptf->wdh > ptf->pco && ptf->pco < 0
+		&& ptf->fag == '0' && ptf->wdh > ptf->siz)
+		ft_printf_d_incre('0', ptf);
 	while (ptf->wdh > ptf->siz && ptf->fag != '-' && ptf->wdh != 0)
 	{
 		ft_putchar_printf(' ', ptf);

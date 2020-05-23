@@ -10,12 +10,12 @@ void	ft_printf_p_disp_suite(int *m, int *a, int *u, t_point *ptf)
 	ft_putchar_printf((ptf->d[1]), ptf);
 	while (ptf->d[x] != '\0' && ptf->ull != 0)
 	{
-		// while (x > 0 && *m > ptf->siz)
-		// {
-		// 	ft_putchar_printf('0', ptf);
-		// 	*m = *m - 1;
-		// 	*a = *a + 1;
-		// }
+		while (x > 0 && *m + 2 > ptf->siz)
+		{
+			ft_putchar_printf('0', ptf);
+			*m = *m - 1;
+			*a = *a + 1;
+		}
 		*m = *m;
 		*a = *a;
 		*u = *u;
@@ -46,12 +46,12 @@ void	ft_printf_p_disp(t_point *ptf)
 	// 	ft_putchar_printf('0', ptf);
 	// 	a++;
 	// }
-	while (ptf->ull == 0 && m > 0)
-	{
-		ft_putchar_printf('0', ptf);
-		m--;
-		a++;
-	}
+	// while (ptf->ull == 0 && m > 0)
+	// {
+	// 	ft_putchar_printf('0', ptf);
+	// 	m--;
+	// 	a++;
+	// }
 	// printf("test\n");
 	ft_printf_p_disp_suite(&m, &a, &u, ptf);
 	ptf->siz = (ptf->ull == 0 && ptf->pco == 0) ? 2 : ptf->siz + a;
@@ -65,9 +65,9 @@ void	ft_printf_p_incre(int x, t_point *ptf)
 
 void	ft_printf_p_suite(t_point *ptf)
 {
-	while (ptf->ull == 0 && ptf->wdh > ptf->pco && ptf->pco < 0
-		&& ptf->fag == '0' && ptf->wdh > ptf->siz)
-		ft_printf_p_incre('0', ptf);
+	// while (ptf->ull == 0 && ptf->wdh > ptf->pco && ptf->pco < 0
+	// 	&& ptf->fag == '0' && ptf->wdh > ptf->siz)
+	// 	ft_printf_p_incre('0', ptf);
 	while (ptf->ull == 0 && ptf->wdh > ptf->pco && ptf->pco < 0
 		&& ptf->fag == 0 && ptf->wdh > ptf->siz)
 		ft_printf_p_incre(' ', ptf);
@@ -119,6 +119,12 @@ void	ft_printf_p(t_point *ptf)
 	while (ptf->ull == 0 && ptf->wdh > ptf->pco && ptf->pco >= 0
 		&& ptf->wdh > ptf->siz)
 		ft_printf_p_incre(' ', ptf);
+	// printf ("wdh %d", ptf->wdh);
+	while (ptf->ull == 0 && ptf->pco - 1 > 0)
+	{
+		ft_printf_p_incre('0', ptf);
+		ptf->pco = ptf->pco - 1;
+	}
 	ptf->i = ptf->i + ptf->u;
 	ft_clear_ptf(ptf);
 }

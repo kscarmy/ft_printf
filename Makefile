@@ -121,5 +121,5 @@ fclean : clean
 re : fclean all
 
 comp : re
-	$(CC) $(CFLAGS) $(NAME) main.c -fsanitize=address
-# -g3 -fsanitize=address main.c
+	$(CC) $(NAME) main.c
+# -g3 -fsanitize=address main.c $(CFLAGS)

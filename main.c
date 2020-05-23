@@ -100,19 +100,20 @@ int	main(void)
 	int *j;
 	int x;
 	unsigned int u;
-	// unsigned long long ull = 12;
+	unsigned long long ull;
 
-	s = "abc";
+	s = "hi low";
 	str1 = "a la prochaine";
 	str2 = NULL;
 	c = 'A';
 	p = NULL;
 	j = &i;
-	x = 198;
+	x = -2147483648;
 	u = 13;
+	ull = 1234;
 
-	i = ft_printf("-->|%-3.*x|<--\n", -1, x);
-	l = printf("-->|%-3.*x|<--\n", -1, x);
+	i = ft_printf("%%-d 42 == %-d\n", x);
+	l = printf("%%-d 42 == %-d\n", x);
 	printf("ret = %d\n", i);
 	printf("ret = %d\n", l);
 
